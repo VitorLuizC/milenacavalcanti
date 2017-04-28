@@ -1,0 +1,16 @@
+# All files
+[*]
+charset = utf-8
+end_of_line = crlf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# JSONs and settings files
+[{*.json,.*rc}]
+indent_size = 2
+indent_style = space
+
+# Source files
+[*.{vue,pug,js,styl}]
+indent_size = 2
+indent_style = space
