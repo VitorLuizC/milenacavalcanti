@@ -1,3 +1,3 @@
 <template lang="pug">
-  router-view
+  h1 Admin
 </template>

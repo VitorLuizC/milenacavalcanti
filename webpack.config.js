@@ -14,11 +14,14 @@ const config = {
   module: {
     rules: [vue, stylus, pug, babel]
   },
+  resolve: {
+    extensions: ['.vue', '.js', '.json', '.pug']
+  },
   plugins: [
     extractStyles,
     new HtmlPlugin({
       filename: 'index.html',
-      template: path.join(__dirname, './src/index.pug')
+      template: path.join(__dirname, './src/view.pug')
     })
   ],
   performance: { hints: false },
