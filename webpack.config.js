@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const HtmlPlugin = require('html-webpack-plugin')
 const { vue, stylus, pug, babel, extractStyles } = require('./webpack.rules.js')
 const { DefinePlugin, LoaderOptionsPlugin } = webpack
-const { UglifyJsPlugin, CommonsChunkPlugin } = webpack.optimize
+const { UglifyJsPlugin } = webpack.optimize
 
 const config = {
   entry: './src/index.js',
@@ -15,7 +15,10 @@ const config = {
     rules: [vue, stylus, pug, babel]
   },
   resolve: {
-    extensions: ['.vue', '.js', '.json', '.pug']
+    extensions: ['.vue', '.js', '.json', '.pug'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    }
   },
   plugins: [
     extractStyles,
@@ -24,12 +27,35 @@ const config = {
       template: path.join(__dirname, './src/view.pug')
     })
   ],
-  performance: { hints: false },
-  devtool: 'source-map'
+  devServer: {
+    historyApiFallback: true,
+    noInfo: true
+  },
+  performance: {
+    hints: false
+  },
+  devtool: 'eval'
 }
 
 function setProduction() {
-  pug.use.options.pretty = false
+  pug.use.options.pretty = config.devtool = false
+
+  config.plugins = config.plugins.concat([
+    new DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
+    new UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        warnings: false
+      }
+    }),
+    new LoaderOptionsPlugin({
+      minimize: true
+    })
+  ])
 
   return config
 }
