@@ -1,4 +1,4 @@
-import { APP_DATA, OWNER_DATA, AUTHOR_DATA, LICENSE_DATA } from '../types.js'
+import * as types from '../types.js'
 
 export const state = {
   app: {
@@ -20,16 +20,16 @@ export const state = {
 }
 
 export const getters = {
-  [APP_DATA](state) {
+  [types.APP_DATA](state) {
     return state.app
   },
-  [OWNER_DATA](state) {
+  [types.OWNER_DATA](state) {
     return state.app.owner
   },
-  [AUTHOR_DATA](state) {
+  [types.AUTHOR_DATA](state) {
     return state.app.author
   },
-  [LICENSE_DATA](state) {
+  [types.LICENSE_DATA](state) {
     return state.app.author.license
   }
 }
