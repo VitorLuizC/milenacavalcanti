@@ -3,12 +3,15 @@ const webpack = require('webpack')
 const HtmlPlugin = require('html-webpack-plugin')
 const { vue, stylus, pug, babel, extractStyles } = require('./webpack.rules.js')
 const { DefinePlugin, LoaderOptionsPlugin } = webpack
-const { UglifyJsPlugin } = webpack.optimize
+const { UglifyJsPlugin, CommonsChunkPlugin } = webpack.optimize
 
 const config = {
-  entry: './src/index.js',
+  entry: {
+    main: './src/index.js',
+    vendors: 'babel-polyfill'
+  },
   output: {
-    filename: 'main.js',
+    filename: '[name].js',
     path: path.join(__dirname, './dist')
   },
   module: {
@@ -45,6 +48,9 @@ function setProduction() {
       'process.env': {
         NODE_ENV: '"production"'
       }
+    }),
+    new CommonsChunkPlugin({
+      name: 'vendors'
     }),
     new UglifyJsPlugin({
       sourceMap: true,
