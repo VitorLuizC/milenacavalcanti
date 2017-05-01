@@ -1,36 +1,55 @@
 <template lang="pug">
-  router-view(v-if='isAuthLoaded')
+  view-container(:menuItems='items')
+    router-view(v-if='isAuthLoaded')
+    button(v-if='user !== null', @click.prevent='signOut', slot='header', type='button') Sair
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapGetters } from 'vuex'
   import * as types from '../store/types'
   import { authentication } from '../application'
+  import ViewContainer from '../components/view/ViewContainer'
 
   export default {
+    components: { ViewContainer },
+    computed: mapGetters({ user: types.USER_DATA }),
     data() {
       return {
-        isAuthLoaded: false
+        isAuthLoaded: false,
+        items: [
+          {
+            link: '/admin/dashboard',
+            text: 'Dashboard'
+          },
+          {
+            link: '/admin/posts',
+            text: 'Fotos e Publicações'
+          },
+          {
+            link: '/',
+            text: 'Voltar para a Página'
+          }
+        ]
       }
     },
     methods: {
-      ...mapActions({
-        showError: types.SHOW_ERROR,
-        updateUser: types.USER_UPDATE
-      }),
       authenticate(user) {
-        const isLoginRoute = (this.$route.path === '/admin/login')
+        const isLoginRoute = (['/admin', '/admin/login'].includes(this.$route.path))
 
         if (!user && !isLoginRoute) {
           this.isAuthLoaded = true
-          this.showError('Sem permissão para acessar essa área do site.')
+          this.$store.dispatch(types.ERROR_SHOW, 'Sem permissão para acessar essa área do site.')
           this.$router.go('/admin/login')
           return
         }
 
         if (user)
-          this.updateUser(user)
+          this.$store.dispatch(types.USER_UPDATE, user)
         this.isAuthLoaded = true
+      },
+      async signOut() {
+        await this.$store.dispatch(USER_SIGNOUT)
+        this.$router.push('/')
       }
     },
     created() {
