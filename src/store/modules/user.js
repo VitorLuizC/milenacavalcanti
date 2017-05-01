@@ -27,7 +27,7 @@ export const actions = {
 
     try {
       user = await authentication.signInWithEmailAndPassword(email, password)
-      commit(types.USER_UPDATE, user)
+      dispatch(types.USER_UPDATE, user)
     } catch (error) {
       dispatch(types.ERROR_SHOW, error)
     }
@@ -35,7 +35,7 @@ export const actions = {
   async [types.USER_SIGNOUT]({ commit, dispatch }) {
     try {
       await authentication.signOut()
-      commit(types.USER_UPDATE, null)
+      dispatch(types.USER_UPDATE, null)
     } catch (error) {
       dispatch(types.ERROR_SHOW, error)
     }
