@@ -6,6 +6,9 @@ export const state = {
 }
 
 export const getters = {
+  [types.USER_AUTH](state) {
+    return state.user !== null
+  },
   [types.USER_DATA](state) {
     return state.user
   }

@@ -6,6 +6,7 @@ export const LICENSE_DATA = 'app/LICENSE_DATA'
 
 // User
 export const USER_DATA = 'user/USER_DATA'
+export const USER_AUTH = 'user/USER_AUTH'
 export const USER_UPDATE = 'user/USER_UPDATE'
 export const USER_SIGNIN = 'user/USER_SIGNIN'
 export const USER_SIGNOUT = 'user/USER_SIGNOUT'

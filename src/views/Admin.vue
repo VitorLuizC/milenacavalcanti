@@ -1,7 +1,7 @@
 <template lang="pug">
   view-container(:menuItems='items')
     router-view(v-if='isAuthLoaded')
-    button(v-if='user !== null', @click.prevent='signOut', slot='header', type='button') Sair
+    button(v-if='isAuth', @click.prevent='signOut', slot='header', type='button') Sair
 </template>
 
 <script>
@@ -12,7 +12,7 @@
 
   export default {
     components: { ViewContainer },
-    computed: mapGetters({ user: types.USER_DATA }),
+    computed: mapGetters({ user: types.USER_DATA, isAuth: types.USER_AUTH }),
     data() {
       return {
         isAuthLoaded: false,
