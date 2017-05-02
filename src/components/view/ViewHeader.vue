@@ -3,7 +3,7 @@
     h1 {{ app.title }}
     figure(slot='header')
       img(src='', :src='app.logo', :alt='app.title', :title='app.title')
-    view-menu(:items='menuItems')
+    view-menu(:items='items')
     slot
 </template>
 
@@ -16,7 +16,7 @@
     computed: mapGetters({ app: types.APP_DATA }),
     components: { ViewMenu },
     props: {
-      menuItems: {
+      items: {
         type: Array,
         required: true
       }

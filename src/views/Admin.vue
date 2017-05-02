@@ -1,5 +1,5 @@
 <template lang="pug">
-  view-container(:menuItems='items')
+  view-container(:items='items')
     router-view(v-if='isAuthLoaded')
     button(v-if='isAuth', @click.prevent='signOut', slot='header', type='button') Sair
 </template>
@@ -15,7 +15,7 @@
     computed: mapGetters({ user: types.USER_DATA, isAuth: types.USER_AUTH }),
     data() {
       return {
-        isAuthLoaded: false,
+        isAuthLoaded: true,
         items: [
           {
             link: '/admin/dashboard',
@@ -39,7 +39,7 @@
         if (!user && !isLoginRoute) {
           this.isAuthLoaded = true
           this.$store.dispatch(types.ERROR_SHOW, 'Sem permissão para acessar essa área do site.')
-          this.$router.go('/admin/login')
+          this.$router.push('/admin/login')
           return
         }
 
@@ -48,7 +48,7 @@
         this.isAuthLoaded = true
       },
       async signOut() {
-        await this.$store.dispatch(USER_SIGNOUT)
+        await this.$store.dispatch(types.USER_SIGNOUT)
         this.$router.push('/')
       }
     },

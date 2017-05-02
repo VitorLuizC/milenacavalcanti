@@ -4,7 +4,7 @@
   "description": "Milena Cavalcanti's portfolio.",
   "main": "src/index.js",
   "scripts": {
-    "dev": "webpack-dev-server --hot --open --quiet --content-base ./dist --client-log-level warning ",
+    "dev": "webpack-dev-server --quiet --content-base ./dist",
     "debug": "webpack -d --env development --display-error-details",
     "watch": "webpack -w -d --env development --hide-modules",
     "build": "webpack -p --env production --hide-modules",
