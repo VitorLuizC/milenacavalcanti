@@ -1,3 +1,11 @@
 <template lang="pug">
-  h1 Posts
+  text-form
 </template>
+
+<script>
+  import { TextForm } from '../components/TextForm'
+
+  export default {
+    components: { TextForm }
+  }
+</script>

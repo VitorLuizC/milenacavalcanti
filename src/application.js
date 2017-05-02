@@ -12,3 +12,5 @@ export default application = initializeApp({
 })
 
 export const authentication = application.auth()
+
+export const database = application.database()

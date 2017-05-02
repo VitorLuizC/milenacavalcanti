@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    view-header(:menuItems='menuItems')
+    view-header(:items='items')
       slot(name='header')
     view-content
       slot
@@ -15,7 +15,7 @@
   export default {
     components: { ViewContent, ViewFooter, ViewHeader },
     props: {
-      menuItems: {
+      items: {
         type: Array,
         required: true
       }

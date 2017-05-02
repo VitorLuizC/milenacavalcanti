@@ -1,5 +1,5 @@
 <template lang="pug">
-  view-container
+  view-container(:items='[]')
     p
       code kkk eae men
 </template>
