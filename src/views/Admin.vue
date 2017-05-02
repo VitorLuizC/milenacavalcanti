@@ -43,8 +43,10 @@
           return
         }
 
-        if (user)
+        if (user) {
           this.$store.dispatch(types.USER_UPDATE, user)
+          this.$router.push('/admin/dashboard')
+        }
         this.isAuthLoaded = true
       },
       async signOut() {

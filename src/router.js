@@ -46,7 +46,6 @@ export default router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log('Hello!')
   let isAuthenticated = (store.getters[types.USER_DATA] !== null)
   let allowGuest = (!to.meta || !to.meta.authenticated)
 

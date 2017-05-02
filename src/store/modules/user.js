@@ -16,7 +16,7 @@ export const getters = {
 
 export const mutations = {
   [types.USER_UPDATE](state, payload) {
-    state.user = payload
+    state.user = { ...payload }
   }
 }
 
