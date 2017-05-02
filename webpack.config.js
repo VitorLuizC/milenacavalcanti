@@ -38,7 +38,7 @@ const config = {
   performance: {
     hints: false
   },
-  devtool: 'eval'
+  devtool: 'source-map'
 }
 
 function setProduction() {
