@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import { TextForm } from '../components/TextForm'
+  import TextForm from '../components/TextForm'
 
   export default {
     components: { TextForm }

@@ -42,7 +42,7 @@
         } else {
           this.post.id = await posts.push(null).key
           this.post.created = new Date().toString()
-          await posts.child(this.post.id).put(this.post)
+          await posts.child(this.post.id).set(this.post)
         }
       }
     }
